@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loving Homes | فندق الكلاب الفاخر</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Leaflet Map Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Loving <span>Homes</span></div>
+        <div class="menu-toggle">☰</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="about.html">عن الشركة</a></li>
+                <li><a href="services.html">الخدمات</a></li>
+                <li><a href="packages.html">الباقات</a></li>
+                <li><a href="products.html">المنتجات</a></li>
+                <li><a href="gallery.html">معرض الصور</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+                <li><a href="advice.html">نصائح</a></li>
+            </ul>
+        </nav>
+        <div class="control-buttons">
+            <button class="control-btn" data-action="zoomIn" onclick="zoomIn()">تكبير +</button>
+            <button class="control-btn" data-action="zoomOut" onclick="zoomOut()">تصغير -</button>
+            <button class="control-btn" data-action="language" onclick="changeLanguage()">English</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>فندق فاخر لكلابك في هونغ كونغ</h1>
+                <p>نوفر الرعاية والرفاهية لكلابك أثناء غيابك</p>
+                <a href="packages.html" class="btn">اكتشف الباقات</a>
+            </div>
+        </section>
+
+        <section style="text-align: center; margin: 3rem 0;">
+            <h2>لماذا تختار Loving Homes؟</h2>
+            <p style="max-width: 700px; margin: 1rem auto;">نحن نقدم بيئة آمنة ومريحة لكلابك مع مرافق على أعلى مستوى وطاقم محترف يعمل 24/7.</p>
+        </section>
+
+        <div class="card-container">
+            <div class="card">
+                <img src="images/8qvcXQgVDS0b.jpg" alt="صالون حلاقة">
+                <div class="card-content">
+                    <h3>صالون حلاقة ومنتجع</h3>
+                    <p>خدمات حلاقة وتجميل احترافية لكلابك.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/Ce4X33GZ2nBH.jpg" alt="منطقة لعب">
+                <div class="card-content">
+                    <h3>مناطق لعب آمنة</h3>
+                    <p>مراعي خارجية وحظائر داخلية للعب.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="images/dCyzFvIHU1v1.jpg" alt="رعاية بيطرية">
+                <div class="card-content">
+                    <h3>رعاية بيطرية 24/7</h3>
+                    <p>فريق بيطري متاح على مدار الساعة.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <section class="map-container">
+            <h2>موقعنا في هونغ كونغ</h2>
+            <div id="hongkongMap"></div>
+        </section>
+    </main>
+
+    <!-- AI Button -->
+    <button class="ai-button" onclick="toggleChatbot()" title="فتح مساعد الذكاء الاصطناعي">
+        <span class="ai-button-tooltip">مساعد ذكي</span>
+        🤖
+    </button>
+
+    <!-- AI Chatbot -->
+    <div class="ai-chatbot">
+        <div class="chatbot-header" onclick="toggleChatbot()">
+            <h3>مساعد Loving Homes</h3>
+            <button class="chatbot-minimize-btn">−</button>
+        </div>
+        <div class="chatbot-messages">
+            <div class="message ai">مرحبًا! أنا مساعد Loving Homes. كيف يمكنني مساعدتك؟</div>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" placeholder="اكتب سؤالك هنا..." onkeypress="if(event.key==='Enter') sendChatMessage()">
+            <button onclick="sendChatMessage()">إرسال</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>📍 هونغ كونغ، شارع الكلاب السعيد | 📞 +852 1234 5678 | ✉️ info@lovinghomes.hk</p>
+        <p>© 2025 Loving Homes. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize Hong Kong Map
+        window.addEventListener('load', () => {
+            const map = L.map('hongkongMap').setView([22.3193, 114.1694], 11);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+            
+            // Add marker for Loving Homes
+            L.marker([22.3193, 114.1694]).addTo(map)
+                .bindPopup('<b>Loving Homes</b><br>فندق الكلاب الفاخر<br>شارع الكلاب السعيد')
+                .openPopup();
+        });
+    </script>
+</body>
+</html>
